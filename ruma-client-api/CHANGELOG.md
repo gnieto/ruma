@@ -16,6 +16,8 @@ Breaking changes:
   `Ruleset` type from `ruma_events`
 * Fix event types in `r0::context::get_context`
 * Fix event types in `r0::sync::sync_events`
+* Replace `r0::keys::{KeyAlgorithm, AlgorithmAndDeviceId}` with
+  `ruma_identifiers::{DeviceKeyAlgorithm, DeviceKeyId}`
 
 Improvements:
 

@@ -14,10 +14,10 @@ use ruma_events::{
     to_device::AnyToDeviceEvent,
     EventJson,
 };
-use ruma_identifiers::{RoomId, UserId};
+use ruma_identifiers::{DeviceKeyAlgorithm, RoomId, UserId};
 use serde::{Deserialize, Serialize};
 
-use crate::r0::{filter::FilterDefinition, keys::KeyAlgorithm};
+use crate::r0::filter::FilterDefinition;
 
 ruma_api! {
     metadata {
@@ -92,7 +92,7 @@ ruma_api! {
         /// For each key algorithm, the number of unclaimed one-time keys
         /// currently held on the server for a device.
         #[serde(default, skip_serializing_if = "BTreeMap::is_empty")]
-        pub device_one_time_keys_count: BTreeMap<KeyAlgorithm, UInt>,
+        pub device_one_time_keys_count: BTreeMap<DeviceKeyAlgorithm, UInt>,
     }
 
     error: crate::Error

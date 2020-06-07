@@ -5,10 +5,10 @@ use std::collections::BTreeMap;
 use std::time::Duration;
 
 use ruma_api::ruma_api;
-use ruma_identifiers::{DeviceId, UserId};
+use ruma_identifiers::{DeviceId, DeviceKeyId, DeviceKeyAlgorithm, UserId};
 use serde_json::Value as JsonValue;
 
-use super::{AlgorithmAndDeviceId, KeyAlgorithm, OneTimeKey};
+use super::OneTimeKey;
 
 ruma_api! {
     metadata {
@@ -31,7 +31,7 @@ ruma_api! {
         pub timeout: Option<Duration>,
 
         /// The keys to be claimed.
-        pub one_time_keys: BTreeMap<UserId, BTreeMap<DeviceId, KeyAlgorithm>>,
+        pub one_time_keys: BTreeMap<UserId, BTreeMap<DeviceId, DeviceKeyAlgorithm>>,
     }
 
     response {
@@ -40,7 +40,7 @@ ruma_api! {
         pub failures: BTreeMap<String, JsonValue>,
 
         /// One-time keys for the queried devices.
-        pub one_time_keys: BTreeMap<UserId, BTreeMap<DeviceId, BTreeMap<AlgorithmAndDeviceId, OneTimeKey>>>,
+        pub one_time_keys: BTreeMap<UserId, BTreeMap<DeviceId, BTreeMap<DeviceKeyId, OneTimeKey>>>,
     }
 
     error: crate::Error
